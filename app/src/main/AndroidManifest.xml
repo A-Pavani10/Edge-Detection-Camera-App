@@ -1,9 +1,15 @@
+<manifest package="com.example.edgedetect"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.edgedetect">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <application android:label="EdgeDetectApp">
-        <activity android:name=".MainActivity">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.any" />
+
+    <application
+        android:allowBackup="true"
+        android:label="EdgeDetect"
+        android:supportsRtl="true">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
