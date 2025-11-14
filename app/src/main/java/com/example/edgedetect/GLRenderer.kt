@@ -1,17 +1,24 @@
-
 package com.example.edgedetect
-import android.opengl.GLES20
+
+import android.content.Context
+import android.graphics.Bitmap
 import android.opengl.GLSurfaceView
-import javax.microedition.khronos.opengles.GL10
-import javax.microedition.khronos.egl.EGLConfig
-class GLRenderer : GLSurfaceView.Renderer {
-    override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-        GLES20.glClearColor(0f, 0f, 0f, 1f)
+import android.util.AttributeSet
+
+class GLTextureSurfaceView(context: Context, attrs: AttributeSet?) : GLSurfaceView(context, attrs) {
+    private val renderer: GLRenderer
+
+    constructor(context: Context) : this(context, null)
+
+    init {
+        setEGLContextClientVersion(2)
+        renderer = GLRenderer()
+        setRenderer(renderer)
+        renderMode = RENDERMODE_WHEN_DIRTY
     }
-    override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
-        GLES20.glViewport(0, 0, width, height)
-    }
-    override fun onDrawFrame(gl: GL10?) {
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
+
+    fun queueFrame(bmp: Bitmap) {
+        renderer.updateBitmap(bmp)
+        requestRender()
     }
 }
