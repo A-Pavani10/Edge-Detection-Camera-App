@@ -1,0 +1,6 @@
+<resources>
+    <style name="TextOverlay">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
